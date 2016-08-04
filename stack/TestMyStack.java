@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Unit tests for MyStack.java
+ * Unit tests for MyStack.java.
  * @author Tony Song
  *
  */
@@ -84,9 +84,9 @@ public class TestMyStack {
 	
 	@Test
 	public void peekTest() {
-		assertEquals("Three", strStack.pop());
-		assertEquals(40, (int) intStack.pop());
-		assertEquals(false, boolStack.pop());
+		assertEquals("Three", strStack.peek());
+		assertEquals(40, (int) intStack.peek());
+		assertEquals(false, boolStack.peek());
 	}
 	
 	@Test(expected = EmptyStackException.class)
