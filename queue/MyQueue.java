@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 /**
- * ArrayList-based implementation of ADT queue.
+ * ArrayList-based implementation of ADT queue
  * @author Tony Song
  *
  * @param <E>

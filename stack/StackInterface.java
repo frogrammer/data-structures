@@ -3,7 +3,7 @@ package stack;
 import java.util.EmptyStackException;
 
 /**
- * Interface for the ADT stack.
+ * Interface for the ADT stack
  * @author Tony Song
  *
  * @param <E>

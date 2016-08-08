@@ -1,7 +1,7 @@
 package list;
 
 /**
- * Exception class to check the index of the ADT list.
+ * Exception class to check the index of the ADT list
  * @author Tony Song
  *
  */

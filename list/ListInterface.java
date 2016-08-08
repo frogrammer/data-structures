@@ -3,7 +3,7 @@ package list;
 import java.util.Iterator;
 
 /**
- * Interface for the ADT list.
+ * Interface for the ADT list
  * @author Tony Song
  *
  * @param <E>

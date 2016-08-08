@@ -3,7 +3,7 @@ package queue;
 import java.util.NoSuchElementException;
 
 /**
- * Interface for the ADT queue.
+ * Interface for the ADT queue
  * @author Tony Song
  *
  * @param <E>

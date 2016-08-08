@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.EmptyStackException;
 
 /**
- * ArrayList-based implementation of ADT stack.
+ * ArrayList-based implementation of ADT stack
  * @author Tony Song
  *
  * @param <E>

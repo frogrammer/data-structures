@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Unit tests for MyStack.java.
+ * Unit tests for MyStack.java
  * @author Tony Song
  *
  */

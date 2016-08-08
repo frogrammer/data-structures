@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * LinkedList implementation of ADT list.
+ * LinkedList implementation of ADT list
  * @author Tony Song
  *
  * @param <E>

@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Unit tests for MyQueue.java.
+ * Unit tests for MyQueue.java
  * @author Tony Song
  *
  */
