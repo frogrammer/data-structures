@@ -85,4 +85,52 @@ public class TestSortingMethods {
 		assertArrayEquals(randomHundredSorted, randomHundred);
 		assertArrayEquals(randomThousandSorted, randomThousand);
 	}
+	
+	@Test
+	public void bubbleSortTest() {
+		Integer[] ans = {10};
+		
+		SortingMethods.bubbleSort(emptyArr);
+		SortingMethods.bubbleSort(oneArr);
+		SortingMethods.bubbleSort(sevenArr);
+		
+		assertArrayEquals(new Integer[0], emptyArr);
+		assertArrayEquals(ans, oneArr);
+		assertArrayEquals(sevenArrSorted, sevenArr);
+	}
+	
+	@Test
+	public void bubbleSortRandomTest() {
+		SortingMethods.bubbleSort(randomTen);
+		SortingMethods.bubbleSort(randomHundred);
+		SortingMethods.bubbleSort(randomThousand);
+		
+		assertArrayEquals(randomTenSorted, randomTen);
+		assertArrayEquals(randomHundredSorted, randomHundred);
+		assertArrayEquals(randomThousandSorted, randomThousand);
+	}
+	
+	@Test
+	public void insertionSortTest() {
+		Integer[] ans = {10};
+
+		SortingMethods.insertionSort(emptyArr);
+		SortingMethods.insertionSort(oneArr);
+		SortingMethods.insertionSort(sevenArr);
+
+		assertArrayEquals(new Integer[0], emptyArr);
+		assertArrayEquals(ans, oneArr);
+		assertArrayEquals(sevenArrSorted, sevenArr);
+	}
+	
+	@Test
+	public void insertionSortRandomTest() {
+		SortingMethods.insertionSort(randomTen);
+		SortingMethods.insertionSort(randomHundred);
+		SortingMethods.insertionSort(randomThousand);
+		
+		assertArrayEquals(randomTenSorted, randomTen);
+		assertArrayEquals(randomHundredSorted, randomHundred);
+		assertArrayEquals(randomThousandSorted, randomThousand);
+	}
 }
