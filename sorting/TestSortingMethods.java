@@ -133,4 +133,28 @@ public class TestSortingMethods {
 		assertArrayEquals(randomHundredSorted, randomHundred);
 		assertArrayEquals(randomThousandSorted, randomThousand);
 	}
+	
+	@Test
+	public void mergeSortTest() {
+		Integer[] ans = {10};
+
+		SortingMethods.mergeSort(emptyArr);
+		SortingMethods.mergeSort(oneArr);
+		SortingMethods.mergeSort(sevenArr);
+
+		assertArrayEquals(new Integer[0], emptyArr);
+		assertArrayEquals(ans, oneArr);
+		assertArrayEquals(sevenArrSorted, sevenArr);
+	}
+	
+	@Test
+	public void mergeSortRandomTest() {
+		SortingMethods.mergeSort(randomTen);
+		SortingMethods.mergeSort(randomHundred);
+		SortingMethods.mergeSort(randomThousand);
+		
+		assertArrayEquals(randomTenSorted, randomTen);
+		assertArrayEquals(randomHundredSorted, randomHundred);
+		assertArrayEquals(randomThousandSorted, randomThousand);
+	}
 }

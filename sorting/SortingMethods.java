@@ -84,4 +84,71 @@ public class SortingMethods {
 			}
 		}
 	}
+	
+	/**
+	 * Merge two sorted portions of an array so that the portion from first to last
+	 * is sorted. 
+	 * @param theArray
+	 * @param first
+	 * @param mid
+	 * @param last
+	 * @param tempArray
+	 */
+	private static <T extends Comparable<? super T>> void merge(T[] theArray, int first, int mid, int last, T[] tempArray) {
+		for (int i = first; i <= last; i++) {
+			tempArray[i] = theArray[i];
+		}
+		
+		// pointer id of the left portion of the array
+		int left = first;
+		// pointer id of the right portion of the array
+		int right = mid + 1;
+		// where to put the current element 
+		int currentID = first;
+		
+		while (left <= mid && right <= last) {
+			if (tempArray[left].compareTo(tempArray[right]) > 0) {
+				theArray[currentID] = tempArray[right];
+				right++;
+				currentID++;
+			} else {
+				// stable because the left one always goes first in case of duplicates
+				theArray[currentID] = tempArray[left];
+				left++;
+				currentID++;
+			}
+		}
+		
+		// process the leftover items
+		int leftOver = left > mid ? right : left;
+		while (currentID <= last) {
+			theArray[currentID] = tempArray[leftOver];
+			leftOver++;
+			currentID++;
+		}
+	}
+	
+	/**
+	 * Recursive helper for merge sort.
+	 * @param theArray
+	 * @param first
+	 * @param last
+	 * @param tempArray
+	 */
+	private static <T extends Comparable<? super T>> void mergeSortHelper(T[] theArray, int first, int last, T[] tempArray) {
+		if (first < last) {
+			int mid = (first + last) / 2;
+			mergeSortHelper(theArray, first, mid, tempArray);
+			mergeSortHelper(theArray, mid + 1, last, tempArray);
+			merge(theArray, first, mid, last, tempArray);
+		}
+	}
+	
+	/**
+	 * Sort the items in an array into ascending order using merge sort.
+	 * @param theArray
+	 */
+	public static <T extends Comparable<? super T>> void mergeSort(T[] theArray) {
+		mergeSortHelper(theArray, 0, theArray.length - 1, (T[]) new Comparable<?>[theArray.length]);
+	}
 }
