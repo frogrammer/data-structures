@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 
 public class SortingMethods {
-	
+
 	/**
 	 * Find the largest item in an array within the size. 
 	 * If there is more than one largest item, it returns the smallest index.
@@ -136,6 +136,7 @@ public class SortingMethods {
 	 * @param tempArray
 	 */
 	private static <T extends Comparable<? super T>> void mergeSortHelper(T[] theArray, int first, int last, T[] tempArray) {
+		// the base case is when there is only one item
 		if (first < last) {
 			int mid = (first + last) / 2;
 			mergeSortHelper(theArray, first, mid, tempArray);
@@ -150,5 +151,75 @@ public class SortingMethods {
 	 */
 	public static <T extends Comparable<? super T>> void mergeSort(T[] theArray) {
 		mergeSortHelper(theArray, 0, theArray.length - 1, (T[]) new Comparable<?>[theArray.length]);
+	}
+	
+	/**
+	 * Return the index of the pivot element after partitioning the array portion
+	 * @param theArray
+	 * @param first
+	 * @param last
+	 * @return the index of the pivot
+	 */
+	private static <T extends Comparable<? super T>> int partition(T[] theArray, int first, int last) {
+		/*
+         *                 S1                 S2            unknown part
+         * +---------------------------------------------------------------+
+         * | pivot |     < pivot     |     >= pivot     |         ?        |
+         * +---------------------------------------------------------------+
+         *      ^                   ^                    ^                ^
+         *      |                   |                    |                |
+         *    first               lastS1            firstUnknown         last
+         *
+         */
+		T pivot = theArray[first];
+		// S1 is empty
+		int lastS1 = first;
+		// S2 is empty
+		int firstUnknown = first + 1;
+		
+		while (firstUnknown <= last) {
+			if (theArray[firstUnknown].compareTo(pivot) < 0) {
+				// move theArray[firstUnknown] to S1
+				T unknown = theArray[firstUnknown];
+				theArray[firstUnknown] = theArray[lastS1 + 1];
+				theArray[lastS1 + 1] = unknown;
+				lastS1++;
+				firstUnknown++;
+			} else {
+				// move theArray[firstUnknown] to S2
+				firstUnknown++;
+			}
+		}
+		
+		// swap theArray[first] and theArray[lastS1]
+		theArray[first] = theArray[lastS1];
+		theArray[lastS1] = pivot;
+		
+		return lastS1;
+	}
+	
+	/**
+	 * Sort the array portion from first to last.
+	 * @param theArray
+	 * @param first
+	 * @param last
+	 */
+	private static <T extends Comparable<? super T>> void quickSortHelper(T[] theArray, int first, int last) {
+		// the base case is when there is only one item
+		if (first < last) {
+			int pivotID = partition(theArray, first, last);
+			
+			// the item at pivotID is already sorted
+			quickSortHelper(theArray, first, pivotID - 1);
+			quickSortHelper(theArray, pivotID + 1, last);
+		}
+	}
+	
+	/**
+	 * Sort the items in an array into ascending order using quick sort.
+	 * @param theArray
+	 */
+	public static <T extends Comparable<? super T>> void quickSort(T[] theArray) {
+		quickSortHelper(theArray, 0, theArray.length - 1);
 	}
 }

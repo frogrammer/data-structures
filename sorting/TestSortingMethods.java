@@ -157,4 +157,28 @@ public class TestSortingMethods {
 		assertArrayEquals(randomHundredSorted, randomHundred);
 		assertArrayEquals(randomThousandSorted, randomThousand);
 	}
+	
+	@Test
+	public void quickSortTest() {
+		Integer[] ans = {10};
+
+		SortingMethods.quickSort(emptyArr);
+		SortingMethods.quickSort(oneArr);
+		SortingMethods.quickSort(sevenArr);
+
+		assertArrayEquals(new Integer[0], emptyArr);
+		assertArrayEquals(ans, oneArr);
+		assertArrayEquals(sevenArrSorted, sevenArr);
+	}
+	
+	@Test
+	public void quickSortRandomTest() {
+		SortingMethods.quickSort(randomTen);
+		SortingMethods.quickSort(randomHundred);
+		SortingMethods.quickSort(randomThousand);
+		
+		assertArrayEquals(randomTenSorted, randomTen);
+		assertArrayEquals(randomHundredSorted, randomHundred);
+		assertArrayEquals(randomThousandSorted, randomThousand);
+	}
 }
