@@ -1,7 +1,5 @@
 package sorting;
 
-import java.util.Arrays;
-
 /**
  * Collection of static sorting methods for arrays
  * @author Tony Song
@@ -9,7 +7,19 @@ import java.util.Arrays;
  */
 
 public class SortingMethods {
-
+	
+	/**
+	 * Swap two elements in an array 
+	 * @param theArray
+	 * @param indexOne
+	 * @param indexTwo
+	 */
+	private static <T extends Comparable<? super T>> void swap(T[] theArray, int indexOne, int indexTwo) {
+		T temp = theArray[indexOne];
+		theArray[indexOne] = theArray[indexTwo];
+		theArray[indexTwo] = temp;
+	}
+	
 	/**
 	 * Find the largest item in an array within the size. 
 	 * If there is more than one largest item, it returns the smallest index.
@@ -40,9 +50,7 @@ public class SortingMethods {
 			int largestID = indexOfLargest(theArray, i + 1);
 			
 			// swap elements at largestID and i
-			T current = theArray[i];
-			theArray[i] = theArray[largestID];
-			theArray[largestID] = current;
+			swap(theArray, i, largestID);
 		}
 	}
 	
@@ -56,9 +64,7 @@ public class SortingMethods {
 			isSorted = true;
 			for (int i = 0; i < theArray.length - 1; i++) {
 				if (theArray[i].compareTo(theArray[i + 1]) > 0) {
-					T current = theArray[i];
-					theArray[i] = theArray[i + 1];
-					theArray[i + 1] = current;
+					swap(theArray, i, i + 1);
 					// not sorted because a swap happened
 					isSorted = false;
 				}				
@@ -162,27 +168,25 @@ public class SortingMethods {
 	 */
 	private static <T extends Comparable<? super T>> int partition(T[] theArray, int first, int last) {
 		/*
-         *                 S1                 S2            unknown part
-         * +---------------------------------------------------------------+
-         * | pivot |     < pivot     |     >= pivot     |         ?        |
-         * +---------------------------------------------------------------+
-         *      ^                   ^                    ^                ^
-         *      |                   |                    |                |
-         *    first               lastS1            firstUnknown         last
-         *
-         */
+		 *                 S1                 S2            unknown part
+		 * +---------------------------------------------------------------+
+		 * | pivot |     < pivot     |     >= pivot     |         ?        |
+		 * +---------------------------------------------------------------+
+		 *      ^                   ^                    ^                ^
+		 *      |                   |                    |                |
+		 *    first               lastS1            firstUnknown         last
+		 *
+		 */
 		T pivot = theArray[first];
 		// S1 is empty
 		int lastS1 = first;
-		// S2 is empty
+		// S2 is empty == every element is unknown except for the pivot
 		int firstUnknown = first + 1;
 		
 		while (firstUnknown <= last) {
 			if (theArray[firstUnknown].compareTo(pivot) < 0) {
 				// move theArray[firstUnknown] to S1
-				T unknown = theArray[firstUnknown];
-				theArray[firstUnknown] = theArray[lastS1 + 1];
-				theArray[lastS1 + 1] = unknown;
+				swap(theArray, lastS1 + 1, firstUnknown);
 				lastS1++;
 				firstUnknown++;
 			} else {
@@ -191,9 +195,8 @@ public class SortingMethods {
 			}
 		}
 		
-		// swap theArray[first] and theArray[lastS1]
-		theArray[first] = theArray[lastS1];
-		theArray[lastS1] = pivot;
+		// put the pivot in the right place
+		swap(theArray, first, lastS1);
 		
 		return lastS1;
 	}
