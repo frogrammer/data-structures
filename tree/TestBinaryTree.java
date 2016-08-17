@@ -31,8 +31,8 @@ public class TestBinaryTree {
 		 *        1  5  10  8
 		 */
 		rootTwoH2 = new BinaryTree<>(2, 
-									 new BinaryTree<>(6, new BinaryTree<>(1), new BinaryTree<>(5)),
-									 new BinaryTree<>(4, new BinaryTree<>(10), new BinaryTree<>(8)));
+                                     new BinaryTree<>(6, new BinaryTree<>(1), new BinaryTree<>(5)),
+                                     new BinaryTree<>(4, new BinaryTree<>(10), new BinaryTree<>(8)));
 	}
 
 	@Test
