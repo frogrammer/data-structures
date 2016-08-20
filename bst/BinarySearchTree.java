@@ -38,7 +38,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	}
 	
 	/**
-	 * Return the height of the BST. An empty BST's height -1.
+	 * Return the height of the BST. An empty BST's height is -1.
 	 * @return height of the BST
 	 */
 	public int height() {
@@ -65,7 +65,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	}
 	
 	/**
-	 * Insert a new record/node into a binary search tree whose items have 
+	 * Insert a new node into a binary search tree whose nodes have 
 	 * distinct search keys that differ from the given key.
 	 * @param key
 	 * @param value
@@ -109,7 +109,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	}
 	
 	/**
-	 * Delete from a BST the node whose key field is equal to the given key.
+	 * Delete from a BST the node whose key is equal to the given key.
 	 * If the given key is null, it throws NullPointerException. 
 	 * If no such node exists, it throws NoSuchElementException.
 	 * @param key
@@ -130,6 +130,11 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		size--;
 	}
 	
+	/**
+	 * Recursive helper method to find the node with the given key and delete it.
+	 * @param key
+	 * @param current
+	 */
 	private void deleteHelper(K key, Node current) {
 		if (key.compareTo(current.key) < 0) {
 			if (current.left == null) {
@@ -155,10 +160,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	}
 	
 	/**
-	 * Delete the given child of the node and restructure the BST
+	 * Helper method to delete the given child of the node and restructure the BST
 	 * (the child's right subtree is attached to the right most node
 	 * of the child's left subtree) 
-	 * @param n
+	 * @param parent
 	 * @param child - should be either "root", "left", or "right"
 	 */
 	private void deleteNode(Node parent, String child) {
@@ -209,7 +214,8 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 	}
 	
 	/**
-	 * 
+	 * Return the rightmost leaf node of the given node. 
+	 * If the node is null, it returns null.
 	 * @param node
 	 * @return the rightmost leaf node of the given node
 	 */
@@ -237,6 +243,13 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		return getHelper(key, root);
 	}
 	
+	/**
+	 * Recursive helper method to find the node with the given key
+	 * and return the node's value.
+	 * @param key
+	 * @param current
+	 * @return value of the node with the given key
+	 */
 	private V getHelper(K key, Node current) {
 		if (current == null) {
 			// if there is no such node
@@ -250,6 +263,9 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 		}
 	}
 	
+	/**
+	 * Inner class that represents a node in a BST
+	 */
 	private class Node {
 		public K key;
 		public V value;
