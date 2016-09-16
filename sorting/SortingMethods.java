@@ -77,17 +77,18 @@ public class SortingMethods {
 	 * @param theArray
 	 */
 	public static <T extends Comparable<? super T>> void insertionSort(T[] theArray) {
-		// one element is always sorted
+		// one element array is always sorted
 		for (int unsortedID = 1; unsortedID < theArray.length; unsortedID++) {
 			int leftID = unsortedID - 1;
 			T current = theArray[unsortedID];
+			
 			while (leftID >= 0 && (theArray[leftID].compareTo(current) > 0)) {
-				// swap left and current
-				T left = theArray[leftID];
-				theArray[leftID + 1] = left;
-				theArray[leftID] = current;
+				// push the leftID's value to the right by one index
+				theArray[leftID + 1] = theArray[leftID];
 				leftID--;
 			}
+			
+			theArray[leftID + 1] = current;
 		}
 	}
 	
