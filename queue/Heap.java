@@ -60,7 +60,7 @@ public class Heap<E extends Comparable<E>> {
 			smallest = index;
 		}
 		
-		if (right < arr.size() && (arr.get(right).compareTo(current) < 0)) {
+		if (right < arr.size() && (arr.get(right).compareTo(arr.get(smallest)) < 0)) {
 			smallest = right;
 		}
 		
