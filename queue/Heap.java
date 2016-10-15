@@ -73,6 +73,8 @@ public class Heap<E extends Comparable<E>> {
 	}
 	
 	public void add(E element) {
+		if (element == null) throw new NullPointerException();
+		
 		int current = elements.size();
 		int parent = findParent(current);
 		E temp;
