@@ -81,6 +81,26 @@ public class MyLinkedList<E> implements ListInterface<E>, Iterable<E> {
 	}
 	
 	@Override
+	public String toString() {
+		String toReturn = "";
+		Node current = head;
+		
+		if (current == null) {
+			return toReturn;
+		}
+		
+		toReturn += "[" + head.item;
+		
+		while (current.next != null) {
+			toReturn += ", ";
+			current = current.next;
+			toReturn += current.item;
+		}
+		
+		return toReturn + "]";
+	}
+	
+	@Override
 	public Iterator<E> iterator() {
 		return new LinkedListIterator();
 	}
