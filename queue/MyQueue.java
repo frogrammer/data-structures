@@ -1,47 +1,69 @@
 package queue;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 /**
- * ArrayList-based implementation of ADT queue
+ * LinkedList-based implementation of ADT queue
  * @author Tony Song
  *
  * @param <E>
  */
 
 public class MyQueue<E> implements QueueInterface<E> {
-	private ArrayList<E> aList = new ArrayList<>();
+	private static class QueueNode<E> {
+		private E data;
+		private QueueNode<E> next;
+		
+		public QueueNode(E data) {
+			this.data = data;
+		}
+	}
+	
+	private QueueNode<E> first;
+	private QueueNode<E> last;
 	
 	@Override
 	public boolean isEmpty() {
-		return aList.isEmpty();
+		return first == null;
 	}
 
 	@Override
 	public void enqueue(E newItem) {
-		aList.add(newItem);
+		QueueNode<E> t = new QueueNode<>(newItem);
+
+		if (first == null) {
+			first = t;
+			last = first;
+		} else {
+			last.next = t;
+			last = last.next;
+		}
 	}
 
 	@Override
 	public E dequeue() {
-		if (aList.isEmpty()) {
+		if (first == null) {
 			throw new NoSuchElementException("The queue is empty.");
 		}
-		return aList.remove(0);
+		E toReturn = first.data;
+		first = first.next;
+		if (first == null) {
+			last = null;
+		}
+		return toReturn;
 	}
 
 	@Override
 	public void dequeueAll() {
-		aList.clear();
+		first = null;
+		last = null;
 	}
 
 	@Override
 	public E peek() throws NoSuchElementException {
-		if (aList.isEmpty()) {
+		if (first == null) {
 			throw new NoSuchElementException("The queue is empty.");
 		}
-		return aList.get(0);
+		return first.data;
 	}
-
 }
